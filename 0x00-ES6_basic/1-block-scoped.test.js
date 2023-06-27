@@ -1,10 +1,6 @@
-import taskBlock from './1-block-scoped';
+import taskBlock from './1-block-scoped.js';
 
-describe('taskBlock', () => {
-  test('returns [false, true] when called with false', () => {
-    expect(taskBlock(false)).toEqual([false, true]);
-  });
-  test('returns [false, true] when called with true', () => {
-    expect(taskBlock(true)).toEqual([false, true]);
-  });
+test('returns the right values', () => {
+  expect(taskBlock(true)).toEqual([false, true]);
+  expect(taskBlock(false)).toEqual([false, true]);
 });
