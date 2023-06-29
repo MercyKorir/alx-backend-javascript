@@ -4,23 +4,13 @@ export default function handleProfileSignup() {
   const uploadPhotoPromise = uploadPhoto();
   const createUserPromise = createUser();
   let text = '';
-  let count = 0;
+  let arr = [];
 
   Promise.all([uploadPhotoPromise, createUserPromise])
     .then((values) => {
-      for (const val of values) {
-        const objVal = Object.values(val);
-        for (const x of objVal) {
-          count += 1;
-          if (x !== 200) {
-            if (count !== 4) {
-              text += `${x} `;
-            } else {
-              text += x;
-            }
-          }
-        }
-      }
+      const val = values.map(Object.values);
+      arr = val[0].concat(val[1]);
+      text = arr.slice(1).join(' ');
       console.log(text);
     })
     .catch(() => {
