@@ -23,7 +23,7 @@ export default function handleProfileSignup() {
       }
       console.log(text);
     })
-    .catch((err) => {
-      console.error(err);
+    .catch(() => {
+      console.log('Signup system offline');
     });
 }
