@@ -8,9 +8,11 @@ export default async function handleProfileSignup(
 ) {
   const signUpPromise = signUpUser(firstName, lastName);
   const uploadPromise = uploadPhoto(fileName);
-  const res = await Promise.allSettled([signUpPromise, uploadPromise]);
-  return res.map((item) => ({
-    status: item.status,
-    value: item.value || item.reason,
-  }));
+  return Promise.allSettled([signUpPromise, uploadPromise]).then((values) => {
+    const res = values.map((val) => ({
+      status: val.status,
+      value: val.value || val.reason.toString(),
+    }));
+    return res;
+  });
 }
