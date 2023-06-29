@@ -1,5 +1,13 @@
 #!/usr/bin/python3
+"""Defines a pascal function"""
+
+
 def pascal_triangle(n):
+    """
+    The user inputs n which is an
+    integer
+    """
+
     if n <= 0:
         return []
     triangle = [[1]]
