@@ -11,6 +11,6 @@ export default async function handleProfileSignup(
   const res = await Promise.allSettled([signUpPromise, uploadPromise]);
   return res.map((item) => ({
     status: item.status,
-    value: item.value || item.reason.toString(),
+    value: item.value || item.reason,
   }));
 }
