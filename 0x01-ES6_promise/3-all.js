@@ -4,7 +4,7 @@ export default function handleProfileSignup() {
   const uploadPhotoPromise = uploadPhoto();
   const createUserPromise = createUser();
 
-  Promise.all([uploadPhotoPromise, createUserPromise])
+  return Promise.all([uploadPhotoPromise, createUserPromise])
     .then(([upload, user]) => {
       console.log(`${upload.body} ${user.firstName} ${user.lastName}`);
     })
