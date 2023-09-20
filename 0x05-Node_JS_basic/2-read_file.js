@@ -12,7 +12,7 @@ const countStudents = (path) => {
       const [firstName, lastName, age, field] = line.split(',');
 
       if (field !== 'field') {
-        totalStudents++;
+        totalStudents += 1;
         if (studentsByField[field]) {
           studentsByField[field].push(firstName);
         } else {
