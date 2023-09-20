@@ -2,8 +2,6 @@ const http = require('http');
 const fs = require('fs');
 const { promisify } = require('util');
 
-const defaultDBPath = './database.csv';
-
 const readFileAsync = promisify(fs.readFile);
 
 const app = http.createServer(async (req, res) => {
@@ -14,7 +12,7 @@ const app = http.createServer(async (req, res) => {
   if (urlPath === '/') {
     res.end('Hello Holberton School!');
   } else if (urlPath === '/students') {
-    const dbPath = process.argv[2] || defaultDBPath;
+    const dbPath = process.argv[2];
     try {
       const data = await readFileAsync(dbPath, 'utf-8');
       const lines = data.split('\n').filter((line) => line.trim() !== '');
@@ -48,7 +46,7 @@ const app = http.createServer(async (req, res) => {
       }
       res.end(message);
     } catch (err) {
-      res.end('Error: Cannot load the database');
+      res.end('This is the list of our students\nCannot load the database');
     }
   } else {
     res.end('Not Found');
