@@ -31,10 +31,16 @@ const app = http.createServer(async (req, res) => {
       }
       let message = 'This is the list of our students\n';
       message += `Number of students: ${totalStudents}\n`;
+      let fieldCount = 0;
       for (const field in studentsByField) {
         if (Object.prototype.hasOwnProperty.call(studentsByField, field)) {
           const studentsList = studentsByField[field].join(', ');
-          message += `Number of students in ${field}: ${studentsByField[field].length}. List: ${studentsList}\n`;
+          const fieldMsg = `Number of students in ${field}: ${studentsByField[field].length}. List: ${studentsList}`;
+          message += fieldMsg;
+          fieldCount += 1;
+          if (fieldCount < Object.keys(studentsByField).length) {
+            message += '\n';
+          }
         }
       }
       res.end(message);
