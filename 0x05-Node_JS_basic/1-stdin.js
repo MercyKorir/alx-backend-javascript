@@ -6,10 +6,21 @@ const rl = readline.createInterface({
   output: process.stdout,
 });
 
-console.log('Welcome to Holberton School, what is your name?');
+function askForName() {
+  rl.question('Welcome to Holberton School, what is your name?\n', (name) => {
+    if (name.trim() === '') {
+      console.log('This important software is now closing');
+      rl.close();
+    } else {
+      console.log(`Your name is: ${name}`);
+      askForName();
+    }
+  });
+}
 
-rl.question('', (name) => {
-  console.log(`Your name is: ${name}`);
+askForName();
+
+rl.on('close', () => {
   console.log('This important software is now closing');
-  rl.close();
+  process.exit(0);
 });
