@@ -1,8 +1,8 @@
-import fs from 'fs/promises';
+import fs from 'fs';
 
 export default async function readDatabase(filePath) {
   try {
-    const data = await fs.readFile(filePath, 'utf-8');
+    const data = await fs.promises.readFile(filePath, 'utf-8');
     const lines = data.split('\n').filter((line) => line.trim() !== '');
 
     const studentsField = {};
